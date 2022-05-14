@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+    public AudioClip mainTheme;
+    public AudioSource effect;
+
     public GameObject mainMenu;
     public GameObject optionMenu;
     public GameObject creditMenu;
@@ -45,5 +48,10 @@ public class MainMenu : MonoBehaviour
     public void OnApplicationQuit()
     {
         
+    }
+
+    public void playEffect()
+    {
+        effect.Play(0);
     }
 }
