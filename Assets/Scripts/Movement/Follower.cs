@@ -78,7 +78,7 @@ public class Follower : MonoBehaviour
 
     private void SetFormation()
     {
-        _points = Formation.EvaluatePoints().ToList();
+        //_points = Formation.EvaluatePoints().ToList();
 
         /*if (_points.Count > _spawnedUnits.Count)
         {
@@ -115,4 +115,4 @@ public class Follower : MonoBehaviour
         }
     }
 }
-}
+

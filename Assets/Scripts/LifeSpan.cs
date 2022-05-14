@@ -51,8 +51,8 @@ public class LifeSpan : MonoBehaviour
                     break;
             }
         }
-        Debug.Log(m_currentLifeSpan);
-        Debug.Log(m_lifeSpan * (100 - m_pourcent) / 100);
+        //Debug.Log(m_currentLifeSpan);
+        //Debug.Log(m_lifeSpan * (100 - m_pourcent) / 100);
         m_currentLifeSpan -= Time.deltaTime;
         
     }
