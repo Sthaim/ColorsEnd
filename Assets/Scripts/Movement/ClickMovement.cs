@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class ClickMovement : MonoBehaviour
 {
     private NavMeshAgent m_agent;
+
 
     [HideInInspector]
     public int m_nombreArrive = 0;
@@ -19,14 +21,36 @@ public class ClickMovement : MonoBehaviour
     private float m_tempsSpawnNew;
 
     [SerializeField]
+    private GameObject m_child;
+
+    [SerializeField]
     private GameObject m_prefAlly;
 
     private float m_currentTempsSpawn;
+
+    public List<GameObject> _spawnedUnits = new List<GameObject>();
 
     [HideInInspector]
     public State m_curState = State.searchDest;
     [HideInInspector]
     public State m_lastState = State.searchDest;
+
+    private FormationBase _formation;
+
+    [SerializeField] private GameObject _unitPrefab;
+    [SerializeField] private float _unitSpeed = 2;
+
+    private List<Vector3> _points = new List<Vector3>();
+
+    public FormationBase Formation
+    {
+        get
+        {
+            if (_formation == null) _formation = GetComponent<FormationBase>();
+            return _formation;
+        }
+        set => _formation = value;
+    }
 
 
     public enum State
@@ -51,7 +75,9 @@ public class ClickMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetFormation();
         //if (!GetComponent<NavMeshAgent>()) Debug.Log("PasDeNavMesh"); return;
+        m_child.transform.rotation = Quaternion.Euler(0.0f, 0.0f, gameObject.transform.rotation.z * -1.0f);
 
         switch (m_curState)
         {
@@ -95,7 +121,6 @@ public class ClickMovement : MonoBehaviour
             m_currentTempsSpawn = m_tempsSpawnNew;
             SpawnAlly();
         }
-        Debug.Log(m_nombreArrive);
 
         //GetDestination();
 
@@ -104,6 +129,33 @@ public class ClickMovement : MonoBehaviour
     {
         Debug.Log("yayayo");
         m_destination = new Vector3(Random.Range(0, 20), 0f, Random.Range(0, 20));
+    }
+
+    private void SetFormation()
+    {
+        _points = Formation.EvaluatePoints().ToList();
+        Debug.Log($"Voici l'amount: { GetComponent<RadialFormation>()._amount}");
+        for (var i = 0; i < _spawnedUnits.Count; i++)
+        {
+            Debug.LogWarning($"_spawnedUnits : {_spawnedUnits[i]}  _points[i]: {_points[i]} ");
+            _spawnedUnits[i].GetComponent<NavMeshAgent>().SetDestination(_points[i] + (transform.position + new Vector3(-1.7f, -0f, -0.7f)));
+            Debug.Log($"_spawnedUnits.Count : {_spawnedUnits.Count}", this);
+            Debug.Log($"_points.Count : {_points.Count}", this);
+        }
+    }
+
+    public void AddUnit(GameObject obj)
+    {
+        Debug.Log("J'ajoute une entité");
+        GetComponent<RadialFormation>()._amount++;
+        _spawnedUnits.Add(obj);
+    }
+
+    public void SubUnit(GameObject obj)
+    {
+        Debug.Log("Je supprime une entité");
+        GetComponent<RadialFormation>()._amount--;
+        _spawnedUnits.Remove(obj);
     }
 
     public Vector3 GetLeaderPosition()
@@ -125,6 +177,7 @@ public class ClickMovement : MonoBehaviour
     {
         GameObject obj = Instantiate(m_prefAlly,transform.position,Quaternion.identity);
         obj.GetComponent<Follower>().SetLeader(this);
+        AddUnit(obj);
 
     }
 
@@ -133,7 +186,6 @@ public class ClickMovement : MonoBehaviour
 
         m_timer += Time.deltaTime;
         float rdm = Random.Range(0.2f, 3);
-        Debug.Log(rdm);
 
 
         if (m_timer > 3)

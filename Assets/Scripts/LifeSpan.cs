@@ -26,9 +26,14 @@ public class LifeSpan : MonoBehaviour
         {      
             switch (m_currentLifeSpan)
             {
-                case var value when value < 0:
+                case var value when value <= 0:
                     m_currentState = m_lifeState.Mort;
-                    m_animDeath.Play();
+                    Debug.Log("J'arrive en dessous de 0");
+                    if (GetComponent<Follower>() == null) break;
+                    
+                    GetComponent<Follower>().m_leaderToFollow.SubUnit(gameObject);
+                    Destroy(gameObject);
+                    //m_animDeath.Play();
                     break;
 
                 case var value when value < m_lifeSpan*(100-m_pourcent)/100:
@@ -51,8 +56,6 @@ public class LifeSpan : MonoBehaviour
                     break;
             }
         }
-        Debug.Log(m_currentLifeSpan);
-        Debug.Log(m_lifeSpan * (100 - m_pourcent) / 100);
         m_currentLifeSpan -= Time.deltaTime;
         
     }

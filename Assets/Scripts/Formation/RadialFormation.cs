@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class RadialFormation : FormationBase {
-    [SerializeField] private int _amount = 10;
+    public int _amount = 0;
     [SerializeField] private float _radius = 1;
     [SerializeField] private float _radiusGrowthMultiplier = 0;
     [SerializeField] private float _rotations = 1;
@@ -12,10 +14,20 @@ public class RadialFormation : FormationBase {
     [SerializeField] private float _ringOffset = 1;
     [SerializeField] private float _nthOffset = 0;
 
+    private int m_numberOfIteration;
+
     public override IEnumerable<Vector3> EvaluatePoints() {
-        var amountPerRing = _amount / _rings;
+        if (_amount == 0) _rings = 1;
+        else
+        {
+            _rings = (int)(_amount * 0.1f + 1);
+        }
+        int amountPerRing = _amount / _rings;
         var ringOffset = 0f;
-        for (var i = 0; i < _rings; i++) {
+        for (var i = 0; i < _rings; i++){
+
+            if (i == _rings - _amount % _rings) amountPerRing++;
+
             for (var j = 0; j < amountPerRing; j++) {
                 var angle = j * Mathf.PI * (2 * _rotations) / amountPerRing + (i % 2 != 0 ? _nthOffset : 0);
 
@@ -29,10 +41,15 @@ public class RadialFormation : FormationBase {
 
                 pos *= Spread;
 
+                m_numberOfIteration++;
+                Debug.Log($"nombre d'itération: {m_numberOfIteration}");
+
                 yield return pos;
             }
-
             ringOffset += _ringOffset;
         }
+        
+        
+        m_numberOfIteration = 0;
     }
 }
