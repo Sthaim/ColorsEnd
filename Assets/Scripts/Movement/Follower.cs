@@ -12,8 +12,6 @@ public class Follower : MonoBehaviour
 {
     public ClickMovement m_leaderToFollow;
 
-    private Transform _parent;
-
     private NavMeshAgent m_agent;
 
     // Start is called before the first frame update
@@ -24,7 +22,7 @@ public class Follower : MonoBehaviour
 
     private void Awake()
     {
-        _parent = new GameObject("Unit Parent").transform;
+  
     }
 
     // Update is called once per frame
