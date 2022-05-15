@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637881442517792737
-    m_Hash: 2143956032
+      ticks: 637881936320106925
+    m_Hash: 1790390249
   m_LockFileStatus:
     m_FilePath: C:/Users/game2/Documents/GitHub/ColorsEnd/ColorsEnd/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637881442517864397
-    m_Hash: 1722323042
+      ticks: 637881936320106925
+    m_Hash: 968459540
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
