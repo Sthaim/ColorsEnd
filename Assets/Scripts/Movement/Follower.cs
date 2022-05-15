@@ -43,8 +43,17 @@ public class Follower : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & m_layerToIgnore) != 0)
         {
-            if (ReferenceEquals(collision.GetComponent<Follower>()?.m_leaderToFollow, m_leaderToFollow)==false)
-                collision.gameObject.GetComponent<Follower>().m_leaderToFollow.SubUnit(collision.gameObject);  
+            if (ReferenceEquals(collision.GetComponent<Follower>()?.m_leaderToFollow, m_leaderToFollow) == false)
+            {
+                if (m_leaderToFollow.m_isAgressive)
+                {
+                    collision.gameObject.GetComponent<Follower>().m_leaderToFollow.SubUnit(collision.gameObject);
+                }
+                else
+                {
+                    StartCoroutine(m_leaderToFollow.Accouplement(gameObject,collision.gameObject));
+                }
+            }    
             Debug.Log("Je suis en collision");
         }
         

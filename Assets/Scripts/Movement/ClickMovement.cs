@@ -9,9 +9,7 @@ public class ClickMovement : MonoBehaviour
 {
     private NavMeshAgent m_agent;
 
-
-    [HideInInspector]
-    public int m_nombreArrive = 0;
+    [HideInInspector] public bool m_isAgressive = false;
 
     private Vector3 m_destination;
 
@@ -174,11 +172,12 @@ public class ClickMovement : MonoBehaviour
         }
     }
 
-    void SpawnAlly()
+    GameObject SpawnAlly()
     {
         GameObject obj = Instantiate(m_prefAlly,transform.position,Quaternion.identity);
         obj.GetComponent<Follower>().SetLeader(this);
         AddUnit(obj);
+        return obj;
 
     }
 
@@ -197,4 +196,41 @@ public class ClickMovement : MonoBehaviour
 
     }
 
+    public IEnumerator Accouplement(GameObject membreCouple1, GameObject membreCouple2)
+    {
+
+        membreCouple1.GetComponent<Collider>().enabled = false;
+        membreCouple2.GetComponent<Collider>().enabled = false;
+        membreCouple1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        membreCouple2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        membreCouple1.GetComponent<NavMeshAgent>().isStopped = true;
+        membreCouple2.GetComponent<NavMeshAgent>().isStopped = true;
+
+        yield return new WaitForSeconds(3f);
+        
+        if(membreCouple1!= null)
+        {
+            membreCouple1.GetComponent<Follower>().m_leaderToFollow.SpawnAlly().transform.position = membreCouple1.transform.position;
+            membreCouple1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+            membreCouple1.GetComponent<NavMeshAgent>().isStopped = false;
+        }
+        if (membreCouple2 != null)
+        {
+            membreCouple2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+            membreCouple2.GetComponent<NavMeshAgent>().isStopped = false;
+        }
+
+        yield return new WaitForSeconds(3f);
+        if (membreCouple2 != null)
+        {
+            membreCouple1.GetComponent<Collider>().enabled = true;
+        }
+
+        if (membreCouple2 != null)
+        {
+            membreCouple2.GetComponent<Collider>().enabled = true;
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
 }
