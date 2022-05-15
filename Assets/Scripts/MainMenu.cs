@@ -27,6 +27,13 @@ public class MainMenu : MonoBehaviour
 
     }
 
+    public void BackMenu()
+    {
+
+        SceneManager.LoadScene("MainMenu");
+
+    }
+
     public void option()
     {
         mainMenu.SetActive(false);

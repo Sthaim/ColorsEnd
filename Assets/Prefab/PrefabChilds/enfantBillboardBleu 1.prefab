@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2671972137639148798}
   - component: {fileID: 9142930485590430983}
   - component: {fileID: 4315318502414604397}
+  - component: {fileID: 7045586364856056379}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -102,6 +103,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7045586364856056379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850269424230988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf922b77eee2bae45908cdf5b5650a5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  fol: {fileID: 8825386943236321392}
 --- !u!1 &2596473177254319358
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,6 +134,7 @@ GameObject:
   - component: {fileID: 8825386943236321392}
   - component: {fileID: 8224254566624352349}
   - component: {fileID: 6717614181442760667}
+  - component: {fileID: 8166757913614489921}
   m_Layer: 6
   m_Name: enfantBillboardBleu 1
   m_TagString: Untagged
@@ -252,6 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_leaderToFollow: {fileID: 0}
+  m_agent: {fileID: 0}
   m_layerToIgnore:
     serializedVersion: 2
     m_Bits: 64
@@ -283,3 +300,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fecab02a07b0544da5f63032223519e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8166757913614489921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596473177254319358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420bfa6ed9605a04dba073e514ffbe28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifeSpan: 10
+  m_animator: {fileID: 0}
+  m_pourcent: 0

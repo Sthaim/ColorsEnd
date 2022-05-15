@@ -8,7 +8,7 @@ public class LifeSpan : MonoBehaviour
     private m_lifeState m_currentState = m_lifeState.Enfant;
 
     [SerializeField] private float m_lifeSpan = 10f;
-    [SerializeField] private Animation m_animDeath;
+    [SerializeField] private Animator m_animator;
     [SerializeField] [Range(1, 100)] private float m_pourcent;
 
     private float m_currentLifeSpan;
@@ -17,6 +17,8 @@ public class LifeSpan : MonoBehaviour
     void Start()
     {
         m_currentLifeSpan = m_lifeSpan;
+        if (!GetComponentInChildren<Animator>()) return;
+        m_animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -26,17 +28,34 @@ public class LifeSpan : MonoBehaviour
         {      
             switch (m_currentLifeSpan)
             {
+                
                 case var value when value <= 0:
+
+    
                     m_currentState = m_lifeState.Mort;
+
                     Debug.Log("J'arrive en dessous de 0");
+
+                    //StartCoroutine(WaitFor());
+
+
                     if (GetComponent<Follower>() == null) break;
                     
                     GetComponent<Follower>().m_leaderToFollow.SubUnit(gameObject);
-                    //m_animDeath.Play();
+
+
+                    break;
+
+                case var value when value <= 2:
+                    m_animator?.SetTrigger("oldDeath");
+
+
                     break;
 
                 case var value when value < m_lifeSpan*(100-m_pourcent)/100:
                     m_currentState = m_lifeState.Adulte;
+  
+
                     break;
 
                 default:
@@ -44,6 +63,7 @@ public class LifeSpan : MonoBehaviour
             }
             switch (m_currentState)
             {
+
                 case m_lifeState.Enfant:
                     break;
 
@@ -53,9 +73,16 @@ public class LifeSpan : MonoBehaviour
 
                 case m_lifeState.Mort:
                     break;
+
             }
         }
         m_currentLifeSpan -= Time.deltaTime;
         
+    }
+
+    IEnumerator WaitFor()
+    {
+
+        yield return new WaitForSeconds(2);
     }
 }

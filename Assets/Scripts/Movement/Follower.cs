@@ -13,7 +13,7 @@ public class Follower : MonoBehaviour
 {
     public ClickMovement m_leaderToFollow;
 
-    private NavMeshAgent m_agent;
+    public NavMeshAgent m_agent;
 
     [SerializeField]
     private LayerMask m_layerToIgnore;

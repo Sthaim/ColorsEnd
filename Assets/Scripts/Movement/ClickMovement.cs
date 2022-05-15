@@ -8,7 +8,7 @@ using System.Linq;
 [RequireComponent(typeof(NavMeshAgent))]
 public class ClickMovement : MonoBehaviour
 {
-    private NavMeshAgent m_agent;
+    public NavMeshAgent m_agent;
 
 
     [HideInInspector]
