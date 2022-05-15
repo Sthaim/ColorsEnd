@@ -45,6 +45,22 @@ public class ClickMovement : MonoBehaviour
     [SerializeField]
     private LayerMask m_layerEnnemy;
 
+    public ClickMovement pRef;
+
+    //player information
+    public bool isPlayer = false;
+
+    public Camera cam;
+
+    private bool m_attack = false;
+
+    //refs
+    [SerializeField]
+    private GameObject m_spriteAtk;
+    [SerializeField]
+    private GameObject m_spritePaix;
+
+
     public FormationBase Formation
     {
         get
@@ -83,6 +99,24 @@ public class ClickMovement : MonoBehaviour
         //if (!GetComponent<NavMeshAgent>()) Debug.Log("PasDeNavMesh"); return;
         m_child.transform.rotation = Quaternion.Euler(0.0f, 0.0f, gameObject.transform.rotation.z * -1.0f);
 
+
+        m_currentTempsSpawn -= Time.deltaTime;
+        if (m_currentTempsSpawn < 0)
+        {
+            m_currentTempsSpawn = m_tempsSpawnNew;
+            SpawnAlly();
+        }
+
+        if(isPlayer)
+        {
+            UpdatePlayer();
+            
+            
+            return;
+        }
+
+        #region IA
+
         switch (m_curState)
         {
             case State.searchDest:  //start getDest function
@@ -119,21 +153,67 @@ public class ClickMovement : MonoBehaviour
 
         }
 
-        m_currentTempsSpawn -= Time.deltaTime;
-        if (m_currentTempsSpawn < 0)
+        //GetDestination();
+
+        #endregion
+
+    }
+
+    private void UpdatePlayer()
+    {
+
+
+
+        if (Input.GetMouseButton(0))
         {
-            m_currentTempsSpawn = m_tempsSpawnNew;
-            SpawnAlly();
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if(Physics.Raycast(ray,out hit))
+            {
+                m_agent.SetDestination(hit.point);
+            }
         }
 
-        //GetDestination();
+        if (Input.GetMouseButton(1))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+
+                if(hit.collider.gameObject.GetComponent<Reciever>())
+                {
+                    if (!hit.collider.gameObject.GetComponent<Reciever>().canChangeLeader) return;
+                    hit.collider.gameObject.GetComponent<Reciever>().SetLeader(this);
+                }
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            m_attack = !m_attack;
+
+            if (m_attack)
+            {
+                m_spriteAtk.SetActive(true);
+                m_spritePaix.SetActive(false);
+                return;
+            }
+
+            m_spriteAtk.SetActive(false);
+            m_spritePaix.SetActive(true);
+
+        }
+
 
     }
     void GetDestination()
     {
-        Debug.Log("yayayo");
         m_destination = new Vector3(Random.Range(0, 20), 0f, Random.Range(0, 20));
     }
+
+    #region SpawnChilds
 
     private void SetFormation()
     {
@@ -149,6 +229,14 @@ public class ClickMovement : MonoBehaviour
         Debug.Log("J'ajoute une entité");
         GetComponent<RadialFormation>()._amount++;
         _spawnedUnits.Add(obj);
+        if(obj.GetComponent<Reciever>())
+        {
+            obj.GetComponent<Reciever>().m_Leader = this;
+            if (isPlayer)
+            {
+                obj.GetComponent<Reciever>().canChangeLeader = false;
+            }
+        }
     }
 
     public void SubUnit(GameObject obj)
@@ -168,7 +256,6 @@ public class ClickMovement : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, m_agent.destination) < 1)
         {
-            Debug.Log("testDist");
             m_curState = State.arrived;
 
         }
@@ -177,10 +264,12 @@ public class ClickMovement : MonoBehaviour
     void SpawnAlly()
     {
         GameObject obj = Instantiate(m_prefAlly,transform.position,Quaternion.identity);
-        obj.GetComponent<Follower>().SetLeader(this);
+        obj.GetComponent<Follower>().SetLeader(this);   // init du leader au cas ou c'est une ia
         AddUnit(obj);
 
     }
+
+    #endregion
 
     void Timer()
     {
@@ -194,6 +283,67 @@ public class ClickMovement : MonoBehaviour
             m_curState = State.searchDest;
             return;
         }
+
+    }
+
+    public void SetPlayerRef(ClickMovement _ref)
+    {
+        _ref.SetNewChilds(_spawnedUnits, this);
+    }
+
+    public void SetNewChilds(List<GameObject> _list , ClickMovement _ref)
+    {
+
+        /*
+        foreach (GameObject i in _list)
+        {
+            GetComponent<RadialFormation>()._amount++;
+            Debug.Log(_list[i]);
+            _spawnedUnits.Add();
+
+        }
+        /**/
+
+        for (int i = 0; i< _list.Count; i++)
+        {
+
+            AddUnit(_list[i]);
+            _ref.SubUnit(_ref._spawnedUnits[i]);
+            Debug.Log(_ref);
+            Destroy(_ref);
+            //_ref.SubUnit(_spawnedUnits[i]);
+            /*GetComponent<RadialFormation>()._amount++;
+            _spawnedUnits.Add(_list[i]);
+
+            /**/
+            Debug.Log("Je m'ajjouttte");
+        }
+        for (int i = 0; i < _list.Count; i++)
+        {
+
+            _ref.DeleteFromList(_ref._spawnedUnits[i]);
+            //Debug.Log(_ref);
+            //Destroy(_ref);
+            //_ref.SubUnit(_spawnedUnits[i]);
+            /*GetComponent<RadialFormation>()._amount++;
+            _spawnedUnits.Add(_list[i]);
+
+            /**/
+            Debug.Log("Je m'ajjouttte");
+        }
+    }
+
+    public void DeleteFromList(GameObject obj)
+    {
+        Debug.Log("Je supprime une entité");
+        GetComponent<RadialFormation>()._amount--;
+        _spawnedUnits.Remove(obj);
+        
+    }
+
+    //lPlayer functions
+    void AttackIA()
+    {
 
     }
 

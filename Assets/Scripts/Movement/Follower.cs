@@ -24,11 +24,6 @@ public class Follower : MonoBehaviour
         m_agent.avoidancePriority = 99;
     }
 
-    private void Awake()
-    {
-  
-    }
-
     // Update is called once per frame
     void Update()
     {
