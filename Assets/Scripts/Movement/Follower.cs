@@ -36,6 +36,11 @@ public class Follower : MonoBehaviour
 
     public void SetLeader(ClickMovement p_leader)
     {
+        if(m_leaderToFollow != null && m_leaderToFollow != p_leader)
+        {
+            m_leaderToFollow.DelistUnit(gameObject);
+            p_leader.AddUnit(gameObject);
+        }
         m_leaderToFollow = p_leader;
     }
 

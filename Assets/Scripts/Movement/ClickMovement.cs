@@ -157,6 +157,13 @@ public class ClickMovement : MonoBehaviour
         Destroy(obj);
     }
 
+    public void DelistUnit(GameObject obj)
+    {
+        Debug.Log("Je supprime une entité");
+        GetComponent<RadialFormation>()._amount--;
+        _spawnedUnits.Remove(obj);
+    }
+
     public Vector3 GetLeaderPosition()
     {
         return transform.position;
