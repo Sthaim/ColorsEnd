@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Sprite/SpriteSheet/walkTest.anim.meta
-guid: e709cf223f5b3ef489a54e638dd9eccd
-========
 guid: eec137e6956a7ed4ab7a6e39fdbbb488
->>>>>>>> CharlyFix:Assets/Sprite/SpriteSheet/Button_still.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

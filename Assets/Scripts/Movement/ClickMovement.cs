@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using System.Linq;
 
@@ -52,14 +53,15 @@ public class ClickMovement : MonoBehaviour
 
     public Camera cam;
 
-    private bool m_attack = false;
+    public bool m_attack = false;
 
     //refs
     [SerializeField]
     private GameObject m_spriteAtk;
     [SerializeField]
     private GameObject m_spritePaix;
-
+    [SerializeField]
+    private GameObject m_mesh;
 
     public FormationBase Formation
     {
@@ -95,6 +97,18 @@ public class ClickMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (m_agent.velocity.x > 0)
+        {
+            //m_mesh.transform.localScale = new Vector3(-m_mesh.transform.localScale.x, 0.5f, 0.5f);
+            m_mesh.GetComponent<SpriteRenderer>().flipX = false;
+
+        }
+        else
+        {
+            m_mesh.GetComponent<SpriteRenderer>().flipX = true;
+        }
+
         SetFormation();
         //if (!GetComponent<NavMeshAgent>()) Debug.Log("PasDeNavMesh"); return;
         m_child.transform.rotation = Quaternion.Euler(0.0f, 0.0f, gameObject.transform.rotation.z * -1.0f);
@@ -174,8 +188,21 @@ public class ClickMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         {
+            m_attack = !m_attack;
+
+            if (m_attack)
+            {
+                m_spriteAtk.SetActive(true);
+                m_spritePaix.SetActive(false);
+                return;
+            }
+            //m_spriteAtk.GetComponent<Image>().alp;
+
+            m_spriteAtk.SetActive(false);
+            m_spritePaix.SetActive(true);
+            /*
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -187,8 +214,9 @@ public class ClickMovement : MonoBehaviour
                     hit.collider.gameObject.GetComponent<Reciever>().SetLeader(this);
                 }
             }
+            /**/
         }
-
+/*
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -205,6 +233,7 @@ public class ClickMovement : MonoBehaviour
             m_spritePaix.SetActive(true);
 
         }
+/**/
 
 
     }
@@ -263,6 +292,7 @@ public class ClickMovement : MonoBehaviour
 
     void SpawnAlly()
     {
+
         GameObject obj = Instantiate(m_prefAlly,transform.position,Quaternion.identity);
         obj.GetComponent<Follower>().SetLeader(this);   // init du leader au cas ou c'est une ia
         AddUnit(obj);
@@ -343,11 +373,74 @@ public class ClickMovement : MonoBehaviour
         _spawnedUnits.Remove(obj);
         
     }
-
-    //lPlayer functions
-    void AttackIA()
+    public IEnumerator Accouplement(GameObject membreCouple1, GameObject membreCouple2)
     {
+        if (membreCouple1 != null && membreCouple2 != null)
+        {
+            membreCouple1.GetComponent<Collider>().enabled = false;
+            membreCouple2.GetComponent<Collider>().enabled = false;
+            membreCouple1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            membreCouple2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            if (membreCouple1.GetComponent<NavMeshAgent>().pathStatus != NavMeshPathStatus.PathInvalid && membreCouple2.GetComponent<NavMeshAgent>().pathStatus != NavMeshPathStatus.PathInvalid)
+            {
+                membreCouple1.GetComponent<NavMeshAgent>().isStopped = true;
+                membreCouple2.GetComponent<NavMeshAgent>().isStopped = true;
+            }
+        }
+        yield return new WaitForSeconds(3f);
 
+        if (membreCouple1 != null)
+        {
+            membreCouple1.GetComponent<Follower>().m_leaderToFollow.SpawnAlly2().transform.position = membreCouple1.transform.position;
+            membreCouple1.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+            if (membreCouple1.GetComponent<NavMeshAgent>().pathStatus != NavMeshPathStatus.PathInvalid)
+            {
+                membreCouple1.GetComponent<NavMeshAgent>().isStopped = false;
+            }
+        }
+        if (membreCouple2 != null)
+        {
+            if(membreCouple2.GetComponent<NavMeshAgent>().pathStatus != NavMeshPathStatus.PathInvalid)
+            {
+                 membreCouple2.GetComponent<NavMeshAgent>().isStopped = false;
+            }
+            membreCouple2.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationX;
+        }
+
+        yield return new WaitForSeconds(3f);
+        if (membreCouple1 != null)
+        {
+            membreCouple1.GetComponent<Collider>().enabled = true;
+        }
+
+        if (membreCouple2 != null)
+        {
+            membreCouple2.GetComponent<Collider>().enabled = true;
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    GameObject SpawnAlly2()
+    {
+        GameObject obj = Instantiate(m_prefAlly, transform.position, Quaternion.identity);
+        obj.GetComponent<Follower>().SetLeader(this);
+        AddUnit(obj);
+        return obj;
+
+    }
+
+    public void DelistUnit(GameObject obj)
+    {
+        Debug.Log("Je supprime une entité");
+        GetComponent<RadialFormation>()._amount--;
+        _spawnedUnits.Remove(obj);
+    }
+
+    public void ActivateFromButton(bool bol)
+    {
+        m_attack = bol;
+        Debug.Log(m_attack);
     }
 
 }
