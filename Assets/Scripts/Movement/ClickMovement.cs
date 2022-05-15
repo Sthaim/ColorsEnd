@@ -42,6 +42,9 @@ public class ClickMovement : MonoBehaviour
 
     private List<Vector3> _points = new List<Vector3>();
 
+    [SerializeField]
+    private LayerMask m_layerEnnemy;
+
     public FormationBase Formation
     {
         get
@@ -69,6 +72,7 @@ public class ClickMovement : MonoBehaviour
         //m_agent.SetDestination(this.transform.position + new Vector3(5f, 0f, 0f));
         Debug.Log(State.moveToDest);
         m_currentTempsSpawn = m_tempsSpawnNew;
+        m_agent.avoidancePriority=99;
     }
 
 
@@ -134,13 +138,9 @@ public class ClickMovement : MonoBehaviour
     private void SetFormation()
     {
         _points = Formation.EvaluatePoints().ToList();
-        Debug.Log($"Voici l'amount: { GetComponent<RadialFormation>()._amount}");
         for (var i = 0; i < _spawnedUnits.Count; i++)
         {
-            Debug.LogWarning($"_spawnedUnits : {_spawnedUnits[i]}  _points[i]: {_points[i]} ");
-            _spawnedUnits[i].GetComponent<NavMeshAgent>().SetDestination(_points[i] + (transform.position + new Vector3(-1.7f, -0f, -0.7f)));
-            Debug.Log($"_spawnedUnits.Count : {_spawnedUnits.Count}", this);
-            Debug.Log($"_points.Count : {_points.Count}", this);
+            _spawnedUnits[i].GetComponent<NavMeshAgent>().SetDestination(_points[i] + (m_child.transform.position + new Vector3(-1.7f, -0f, -0.7f)));
         }
     }
 
@@ -156,6 +156,7 @@ public class ClickMovement : MonoBehaviour
         Debug.Log("Je supprime une entité");
         GetComponent<RadialFormation>()._amount--;
         _spawnedUnits.Remove(obj);
+        Destroy(obj);
     }
 
     public Vector3 GetLeaderPosition()
@@ -195,4 +196,5 @@ public class ClickMovement : MonoBehaviour
         }
 
     }
+
 }

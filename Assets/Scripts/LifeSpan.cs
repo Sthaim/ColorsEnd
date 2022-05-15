@@ -32,7 +32,6 @@ public class LifeSpan : MonoBehaviour
                     if (GetComponent<Follower>() == null) break;
                     
                     GetComponent<Follower>().m_leaderToFollow.SubUnit(gameObject);
-                    Destroy(gameObject);
                     //m_animDeath.Play();
                     break;
 

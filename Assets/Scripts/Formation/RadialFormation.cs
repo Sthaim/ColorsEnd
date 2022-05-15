@@ -20,7 +20,7 @@ public class RadialFormation : FormationBase {
         if (_amount == 0) _rings = 1;
         else
         {
-            _rings = (int)(_amount * 0.1f + 1);
+            _rings = (int)(_amount * 0.05f + 1);
         }
         int amountPerRing = _amount / _rings;
         var ringOffset = 0f;
@@ -42,7 +42,6 @@ public class RadialFormation : FormationBase {
                 pos *= Spread;
 
                 m_numberOfIteration++;
-                Debug.Log($"nombre d'itération: {m_numberOfIteration}");
 
                 yield return pos;
             }
