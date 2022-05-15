@@ -6,6 +6,8 @@ public class MainMenu : MonoBehaviour
 {
     public AudioClip mainTheme;
     public AudioSource effect;
+    public AudioSource effectBack;
+    public AudioSource transition;
 
     public GameObject mainMenu;
     public GameObject optionMenu;
@@ -21,11 +23,12 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public void play()
     {
-        
+        transition.Play(0);
     }
 
     public void option()
     {
+        effect.Play(0);
         mainMenu.SetActive(false);
         optionMenu.SetActive(true);
         creditMenu.SetActive(false);
@@ -33,6 +36,7 @@ public class MainMenu : MonoBehaviour
 
     public void credit()
     {
+        effect.Play(0);
         mainMenu.SetActive(false);
         optionMenu.SetActive(false);
         creditMenu.SetActive(true);
@@ -40,18 +44,19 @@ public class MainMenu : MonoBehaviour
 
     public void back()
     {
+        effectBack.Play(0);
         mainMenu.SetActive(true);
         optionMenu.SetActive(false);
         creditMenu.SetActive(false);
     }
 
+    public void testSond()
+    {
+        effectBack.Play(0);
+    }
+
     public void OnApplicationQuit()
     {
         
-    }
-
-    public void playEffect()
-    {
-        effect.Play(0);
     }
 }
