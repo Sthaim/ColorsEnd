@@ -24,14 +24,14 @@ public class Follower : MonoBehaviour
         m_agent.avoidancePriority = 99;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void SetLeader(ClickMovement p_leader)
     {
-        m_leaderToFollow = p_leader;
+        if (m_leaderToFollow != null && m_leaderToFollow != p_leader)
+        {
+            m_leaderToFollow = p_leader;
+        }
+       
     }
 
     private void OnTriggerEnter(Collider collision)

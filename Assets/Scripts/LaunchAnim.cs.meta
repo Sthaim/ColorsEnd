@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Formation/BoxFormation.cs.meta
+guid: 5f2e68dd197d4c2468002d0ba56f6d93
+========
+guid: d09ae529aba3c1642a30528769c65ea7
+>>>>>>>> CharlyFix:Assets/Scripts/LaunchAnim.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

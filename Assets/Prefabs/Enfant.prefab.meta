@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 63100a23430f0e441a76a823a1839238
+<<<<<<<< HEAD:Assets/Prefabs/Enfant.prefab.meta
+guid: 41a6eaa8e1898314b9042b79a40f3d57
+========
+guid: df10d67626d27f141b237f5d994d1a65
+>>>>>>>> CharlyFix:Assets/Prefab/Jouer.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 

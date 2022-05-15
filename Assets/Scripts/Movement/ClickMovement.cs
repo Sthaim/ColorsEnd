@@ -308,29 +308,32 @@ public class ClickMovement : MonoBehaviour
         {
 
             AddUnit(_list[i]);
-            _ref.SubUnit(_ref._spawnedUnits[i]);
+           if(_list[i].GetComponent<Follower>())
+           {
+                _list[i].GetComponent<Follower>().SetLeader(this);
+           }
+            //_ref.SubUnit(_ref._spawnedUnits[i]);
             Debug.Log(_ref);
-            Destroy(_ref);
-            //_ref.SubUnit(_spawnedUnits[i]);
-            /*GetComponent<RadialFormation>()._amount++;
-            _spawnedUnits.Add(_list[i]);
 
-            /**/
+
             Debug.Log("Je m'ajjouttte");
         }
         for (int i = 0; i < _list.Count; i++)
         {
 
             _ref.DeleteFromList(_ref._spawnedUnits[i]);
-            //Debug.Log(_ref);
-            //Destroy(_ref);
-            //_ref.SubUnit(_spawnedUnits[i]);
-            /*GetComponent<RadialFormation>()._amount++;
-            _spawnedUnits.Add(_list[i]);
 
-            /**/
             Debug.Log("Je m'ajjouttte");
         }
+
+        SpawnAlly();
+        _ref.DestroySelf();
+        Debug.Log(_ref);
+    }
+
+    public void DestroySelf()
+    {
+        gameObject.SetActive(false);
     }
 
     public void DeleteFromList(GameObject obj)

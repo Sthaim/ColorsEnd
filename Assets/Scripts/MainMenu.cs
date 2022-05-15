@@ -22,7 +22,9 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public void play()
     {
+
         SceneManager.LoadScene("TestingGround");
+
     }
 
     public void option()
