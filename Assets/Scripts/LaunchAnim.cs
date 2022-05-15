@@ -23,7 +23,7 @@ public class LaunchAnim : MonoBehaviour
     {
         if (!IsActivated) return;
         m_animator?.SetBool("Activated", true);
-        Debug.Log(m_animator.GetBool("Activated"));
+        //Debug.Log(m_animator.GetBool("Activated"));
 
     }
 

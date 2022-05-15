@@ -31,6 +31,8 @@ public class ClickMovement : MonoBehaviour
 
     public List<GameObject> _spawnedUnits = new List<GameObject>();
 
+    public float _deathCount = 0;
+
     [HideInInspector]
     public State m_curState = State.searchDest;
     [HideInInspector]
@@ -63,6 +65,10 @@ public class ClickMovement : MonoBehaviour
     [SerializeField]
     private GameObject m_mesh;
 
+
+    bool switchAt = false;
+    float timerA;
+
     public FormationBase Formation
     {
         get
@@ -88,7 +94,7 @@ public class ClickMovement : MonoBehaviour
         if (!GetComponent<NavMeshAgent>()) return;
         m_agent = GetComponent<NavMeshAgent>();
         //m_agent.SetDestination(this.transform.position + new Vector3(5f, 0f, 0f));
-        Debug.Log(State.moveToDest);
+        //Debug.Log(State.moveToDest);
         m_currentTempsSpawn = m_tempsSpawnNew;
         m_agent.avoidancePriority=99;
     }
@@ -97,6 +103,18 @@ public class ClickMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float a = 2;
+
+        //Debug.Log("death = " + _deathCount);
+
+        a -= 1 * Time.deltaTime;
+
+        if (a <= 0)
+        {
+            _deathCount = 0;
+            a = 2;
+        }
+
 
         if (m_agent.velocity.x > 0)
         {
@@ -166,6 +184,37 @@ public class ClickMovement : MonoBehaviour
 
 
         }
+        //Debug.Log(timerA);
+
+        timerA += Time.deltaTime;
+
+        if (timerA > 5)
+        {
+            switchAt = !switchAt;
+            
+            if (switchAt)
+            {
+                m_attack = true;
+                timerA = 0f;
+                
+            }
+
+            m_attack = false;
+
+            Debug.Log(m_attack);
+
+            timerA = 0f;
+            
+            return;
+        
+        }
+
+        
+
+
+
+        
+
 
         //GetDestination();
 
@@ -255,7 +304,7 @@ public class ClickMovement : MonoBehaviour
 
     public void AddUnit(GameObject obj)
     {
-        Debug.Log("J'ajoute une entité");
+        //Debug.Log("J'ajoute une entité");
         GetComponent<RadialFormation>()._amount++;
         _spawnedUnits.Add(obj);
         if(obj.GetComponent<Reciever>())
@@ -270,9 +319,10 @@ public class ClickMovement : MonoBehaviour
 
     public void SubUnit(GameObject obj)
     {
-        Debug.Log("Je supprime une entité");
+        //Debug.Log("Je supprime une entité");
         GetComponent<RadialFormation>()._amount--;
         _spawnedUnits.Remove(obj);
+        _deathCount += 1;
         Destroy(obj);
     }
 

@@ -28,7 +28,7 @@ public class LifeSpan : MonoBehaviour
             {
                 case var value when value <= 0:
                     m_currentState = m_lifeState.Mort;
-                    Debug.Log("J'arrive en dessous de 0");
+                    //Debug.Log("J'arrive en dessous de 0");
                     if (GetComponent<Follower>() == null) break;
                     
                     GetComponent<Follower>().m_leaderToFollow.SubUnit(gameObject);

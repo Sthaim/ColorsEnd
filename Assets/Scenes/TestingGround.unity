@@ -2031,6 +2031,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7743335004815691607, guid: 2929506533cc997409f803a1f7c1f73a, type: 3}
+      propertyPath: m_mesh
+      value: 
+      objectReference: {fileID: 1093970997}
     - target: {fileID: 7743335004815691611, guid: 2929506533cc997409f803a1f7c1f73a, type: 3}
       propertyPath: m_Name
       value: IAPrefab Billboard (2)
@@ -2054,6 +2058,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fecab02a07b0544da5f63032223519e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1093970997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1555741933578843130, guid: 2929506533cc997409f803a1f7c1f73a, type: 3}
+  m_PrefabInstance: {fileID: 986823339}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1105434405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,6 +3450,7 @@ MonoBehaviour:
   m_child: {fileID: 526133076}
   m_prefAlly: {fileID: 2596473177254319358, guid: d56ec192d95ecb14283f50bd3250247b, type: 3}
   _spawnedUnits: []
+  _deathCount: 0
   m_curState: 0
   m_lastState: 0
   _unitPrefab: {fileID: 2596473177254319358, guid: d56ec192d95ecb14283f50bd3250247b, type: 3}
