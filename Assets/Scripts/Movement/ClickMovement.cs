@@ -187,52 +187,53 @@ public class ClickMovement : MonoBehaviour
                 m_agent.SetDestination(hit.point);
             }
         }
+        
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            m_attack = !m_attack;
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    m_attack = !m_attack;
 
-            if (m_attack)
-            {
-                m_spriteAtk.SetActive(true);
-                m_spritePaix.SetActive(false);
-                return;
-            }
-            //m_spriteAtk.GetComponent<Image>().alp;
+        //    if (m_attack)
+        //    {
+        //        m_spriteAtk.SetActive(true);
+        //        m_spritePaix.SetActive(false);
+        //        return;
+        //    }
+        //    //m_spriteAtk.GetComponent<Image>().alp;
 
-            m_spriteAtk.SetActive(false);
-            m_spritePaix.SetActive(true);
-            /*
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
-            {
+        //    m_spriteAtk.SetActive(false);
+        //    m_spritePaix.SetActive(true);
+            
+        //    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(ray, out hit))
+        //    {
 
-                if(hit.collider.gameObject.GetComponent<Reciever>())
-                {
-                    if (!hit.collider.gameObject.GetComponent<Reciever>().canChangeLeader) return;
-                    hit.collider.gameObject.GetComponent<Reciever>().SetLeader(this);
-                }
-            }
-            /**/
-        }
-/*
+        //        if(hit.collider.gameObject.GetComponent<Reciever>())
+        //        {
+        //            if (!hit.collider.gameObject.GetComponent<Reciever>().canChangeLeader) return;
+        //            hit.collider.gameObject.GetComponent<Reciever>().SetLeader(this);
+        //        }
+        //    }
+          
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            m_attack = !m_attack;
 
-            if (m_attack)
-            {
-                m_spriteAtk.SetActive(true);
-                m_spritePaix.SetActive(false);
-                return;
-            }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    m_attack = !m_attack;
 
-            m_spriteAtk.SetActive(false);
-            m_spritePaix.SetActive(true);
+        //    if (m_attack)
+        //    {
+        //        m_spriteAtk.SetActive(true);
+        //        m_spritePaix.SetActive(false);
+        //        return;
+        //    }
 
-        }
+        //    m_spriteAtk.SetActive(false);
+        //    m_spritePaix.SetActive(true);
+
+        //}
 /**/
 
 

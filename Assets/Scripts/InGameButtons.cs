@@ -49,12 +49,12 @@ public class InGameButtons : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("ainclure");
+        SceneManager.LoadScene("TestingGround");
     }
 
     public void LoadMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 
 

@@ -7,7 +7,7 @@ public class LifeSpan : MonoBehaviour
     private enum m_lifeState {Enfant, Adulte, Mort};
     private m_lifeState m_currentState = m_lifeState.Enfant;
 
-    [SerializeField] private float m_lifeSpan = 10f;
+    [SerializeField] private float m_lifeSpan = 100f;
     [SerializeField] private Animator m_animator;
     [SerializeField] [Range(1, 100)] private float m_pourcent;
 

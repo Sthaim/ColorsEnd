@@ -8,15 +8,18 @@ public class MainMenu : MonoBehaviour
     public AudioClip mainTheme;
     public AudioSource effect;
 
+    public GameObject Bg;
     public GameObject mainMenu;
     public GameObject optionMenu;
     public GameObject creditMenu;
 
     private void Start()
     {
+        Bg.SetActive(true);
         mainMenu.SetActive(true);
         optionMenu.SetActive(false);
         creditMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     // Start is called before the first frame update
@@ -30,7 +33,7 @@ public class MainMenu : MonoBehaviour
     public void BackMenu()
     {
 
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
 
     }
 
@@ -57,7 +60,7 @@ public class MainMenu : MonoBehaviour
 
     public void OnApplicationQuit()
     {
-        
+        Application.Quit();
     }
 
     public void playEffect()
