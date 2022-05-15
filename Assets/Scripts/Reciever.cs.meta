@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 3e962e1b8c1c7204994d959fe9f56e41
+<<<<<<<< HEAD:Assets/Scripts/Reciever.cs.meta
+guid: fa55f73d8b929e94991d7faf3e4273cc
+========
+guid: 2bec6c8b5a22e9f498d16c4d2803e939
+>>>>>>>> CharlyFix:Assets/Scripts/AudioManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

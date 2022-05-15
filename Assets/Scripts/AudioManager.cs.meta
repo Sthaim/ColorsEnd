@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Formation/BoxFormation.cs.meta
-guid: 9ef324035498cef4c94242eaeb988197
+<<<<<<<< HEAD:Assets/Scripts/Reciever.cs.meta
+guid: 8e5810dfcef5dee4483fecf2721ac0c3
 ========
-guid: d09ae529aba3c1642a30528769c65ea7
->>>>>>>> CharlyFix:Assets/Scripts/LaunchAnim.cs.meta
+guid: 2bec6c8b5a22e9f498d16c4d2803e939
+>>>>>>>> CharlyFix:Assets/Scripts/AudioManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

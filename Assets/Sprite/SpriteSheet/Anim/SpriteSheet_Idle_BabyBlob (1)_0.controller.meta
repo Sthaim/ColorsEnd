@@ -1,8 +1,12 @@
 fileFormatVersion: 2
-guid: fa710beccc8ef764a95308279c4a6e0c
+<<<<<<<< HEAD:Assets/Sprite/SpriteSheet/Anim/SpriteSheet_Idle_BabyBlob (1)_0.controller.meta
+guid: 0cb4fa6c623ad6345ad517e3665dceae
+========
+guid: 98bc9e6bb18a059458cf81f67252d89f
+>>>>>>>> CharlyFix:Assets/Audio/MASTER.mixer.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 9100000
+  mainObjectFileID: 24100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

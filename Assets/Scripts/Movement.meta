@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: c7cc85bffa6b645499ff2d0d20ed2f3a
+<<<<<<<< HEAD:Assets/Scripts/Movement.meta
+guid: d40a8783248867f45aa83890a5204efb
+========
+guid: 3d43fcd696f2b97409423c22444205f1
+>>>>>>>> CharlyFix:Assets/Prefab.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

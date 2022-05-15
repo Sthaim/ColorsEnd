@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: ff250d2a202784a48b256f0febdeb323
+<<<<<<<< HEAD:Assets/Scripts/Formation/ExampleArmy.cs.meta
+guid: 4f318e1efbcc19c468db22fa15c931bb
+========
+guid: 9fbcdc7749eb97741b07da24e13d14a5
+>>>>>>>> CharlyFix:Assets/Scripts/SliderManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

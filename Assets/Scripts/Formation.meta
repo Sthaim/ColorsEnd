@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 1f0bdde98eed4bd47b4c7ebcec1c61a2
+<<<<<<<< HEAD:Assets/Scripts/Formation.meta
+guid: e0a1cea23f1ddeb468269209a30e951b
+========
+guid: 1337b2e5adf823144828d2bfb0dc2ee3
+>>>>>>>> CharlyFix:Assets/Audio/Music.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

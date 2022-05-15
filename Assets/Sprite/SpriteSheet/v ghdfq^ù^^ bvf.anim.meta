@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: aa3baaf4907bc63478e40ccea538d0ce
+<<<<<<<< HEAD:Assets/Sprite/SpriteSheet/v ghdfq^ù^^ bvf.anim.meta
+guid: 1981d6d834b3a8441b4238f93d77c120
+========
+guid: abff39002e7cc624a803f9c61a5233e7
+>>>>>>>> CharlyFix:Assets/Sprite/SpriteSheet/Button_anim.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

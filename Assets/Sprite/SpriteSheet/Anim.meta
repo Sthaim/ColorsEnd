@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d97c6354423d25043994d4f8a96e0b57
+<<<<<<<< HEAD:Assets/Sprite/SpriteSheet/Anim.meta
+guid: 653619bc1361eb04d93cbebe70510963
+========
+guid: 77f673875032d9b4e8e2ce8c7728297a
+>>>>>>>> CharlyFix:Assets/Audio/FX.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/Formation/BoxFormation.cs.meta
-guid: 9ef324035498cef4c94242eaeb988197
+<<<<<<<< HEAD:Assets/Scripts/Formation/ExampleArmy.cs.meta
+guid: e7d4e860ae77a46418ff973d9a6548ca
 ========
-guid: d09ae529aba3c1642a30528769c65ea7
->>>>>>>> CharlyFix:Assets/Scripts/LaunchAnim.cs.meta
+guid: 9fbcdc7749eb97741b07da24e13d14a5
+>>>>>>>> CharlyFix:Assets/Scripts/SliderManager.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/TextMesh Pro/Resources/Fonts & Materials/TNanti-Demo SDF.asset.meta
 guid: 645bb2939f68852419de5690de47aa8a
 ========
@@ -7,6 +8,12 @@ guid: b974ccb851917864e966db9635dce182
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000
+=======
+guid: 645bb2939f68852419de5690de47aa8a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+>>>>>>> CharlyFix
   userData: 
   assetBundleName: 
   assetBundleVariant: 
