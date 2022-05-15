@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/MainMenu.cs.meta
-guid: e918d93bafacba240a1b480a8021d0bb
-========
-guid: f012971098c0ed04c95d5eb122ee6bce
->>>>>>>> main_dev:Assets/Scripts/Movement/ClickMovement.cs.meta
+guid: 1d90c61f8bf9e3c4b89d5308d7cc77ce
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
