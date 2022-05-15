@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: b974ccb851917864e966db9635dce182, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a6745c0849cb0af4484e21dfe92ed166, type: 2}
 --- !u!1 &201053366
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,11 +214,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 201053366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f012971098c0ed04c95d5eb122ee6bce, type: 3}
+  m_Script: {fileID: 11500000, guid: 08534441ec92a4b4a81134afd81511f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_nombreArrive: 0
-  m_tempsSpawnNew: 3
+  m_tempsSpawnNew: 2
   m_child: {fileID: 780727736}
   m_prefAlly: {fileID: 6404040818547612012, guid: 63100a23430f0e441a76a823a1839238, type: 3}
   _spawnedUnits: []
@@ -858,18 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f012971098c0ed04c95d5eb122ee6bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_nombreArrive: 0
-  m_tempsSpawnNew: 3
-  m_child: {fileID: 2014481403}
-  m_prefAlly: {fileID: 6404040818547612012, guid: 63100a23430f0e441a76a823a1839238, type: 3}
-  _spawnedUnits: []
-  m_curState: 0
-  m_lastState: 0
-  _unitPrefab: {fileID: 0}
-  _unitSpeed: 2
-  m_layerEnnemy:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!195 &1353378767
 NavMeshAgent:
   m_ObjectHideFlags: 0
