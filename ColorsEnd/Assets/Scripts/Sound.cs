@@ -10,10 +10,8 @@ public class Sound
     //[SerializeField, Tooltip("le sfx a jouer")] private AudioClip clip;
     public AudioClip clip;
     
-    //[SerializeField, Tooltip("le volume du sfx à régler"), Range(0f,1f )] private float volume;
+    //[SerializeField, Tooltip("le volume du sfx à régler"), Range(0f,1f )] private float volume; ne marche qu'en public...
     public float volume;
-
-    public static AudioMixerGroup audioMixer;
 
     [HideInInspector]
     public AudioSource source;

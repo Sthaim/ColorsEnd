@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
-
+    [SerializeField, Tooltip("l'audio mixer de musique a mettre")] private AudioMixerGroup m_audioMixer;
     public Sound[] l_sounds;
     void Awake()
     {
@@ -12,7 +13,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.volume = s.volume;
-            s.source.outputAudioMixerGroup = Sound.audioMixer;
+            s.source.outputAudioMixerGroup = m_audioMixer;
         }
     }
 
